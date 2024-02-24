@@ -5,24 +5,24 @@ import React, { useEffect, useState } from 'react'
 
 
 const Navbar = () => {
-
+  const [isClient, setIsClient] = useState(true)
   const pathName = usePathname()
-  const isClient = true
+
   const router = useRouter()
-  const [currentViewingMode, setcurrentViewingMode] = useState('')
-
-
-
-  console.log(pathName, typeof(pathName))
+  const [currentViewingMode, setcurrentViewingMode] = useState(null)
 
   useEffect(()=>{
+    
     if (typeof window !== 'undefined') {
+      setIsClient(
+        localStorage.getItem('user') == 0  ? false : true
+      )
       !localStorage.getItem('viewingMode') && localStorage.setItem('viewingMode', 'all')
       setcurrentViewingMode(localStorage.getItem('viewingMode'))
     }
   }, [])
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && currentViewingMode) {
     return(
       <div className="navbar bg-neutral">
         <div className="navbar-start">
@@ -78,16 +78,16 @@ const Navbar = () => {
         {/* WIDE NAVBAR FOR LARGE SCREENS */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            { (pathName == "/" || pathName == "/welcome") ?  <li>PHARMAVERIFY</li> : (
+            { (pathName == "/" || pathName == "/welcome" || pathName.startsWith("/admin/drugs-details")) ?  <li>PHARMAVERIFY</li> : (
                         <>
                           <li style={{border: localStorage.getItem('viewingMode') == 'all' && '2px dashed #ECE3CA'}}>
                             <a onClick={()=>{
                               localStorage.setItem('viewingMode', 'all')
                               setcurrentViewingMode('all')
-                            }}>{isClient ? 'All My Products' : 'Approved by me'}</a>
+                            }}>All Products</a>
                           </li>
-                          {!isClient && <li><a>Pending Approval</a></li>}
-                          {isClient && 
+                          {/* {!isClient && <li><a>Pending Approval</a></li>} */}
+                          { 
                               <>
                                 <li onClick={()=>{
                                   localStorage.setItem('viewingMode', 'approved')
@@ -103,14 +103,7 @@ const Navbar = () => {
                                 }}
                                   style={{border: localStorage.getItem('viewingMode') == 'pending' && '2px dashed #ECE3CA'}}
                                 >
-                                  <a>Submitted for Approval</a>
-                                </li>
-                                <li>
-                                  <a>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    Updates
-                                    <span className="badge badge-sm badge-info p-2">NEW</span>
-                                  </a>
+                                  <a>Pending Approval</a>
                                 </li>
                               </>
                             }
