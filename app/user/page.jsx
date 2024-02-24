@@ -1,8 +1,9 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import React, {useState, useEffect} from 'react'
 
-
 const Page = () => {
+  const router = useRouter()
   const [allProducts, setAllProducts] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentViewingMode, setcurrentViewingMode] = useState('')
@@ -48,7 +49,9 @@ const Page = () => {
           <figure className="max-h-[8em]"><img src={product["Image URL"]} alt={product["Medicine Name"]} /></figure>
           <div className="card-body max-h-72">
             <h2 className="card-title flex flex-col items-start">
-              <div>{product["Medicine Name"]}</div>
+              <div className="underline cursor-pointer text-blue-950" onClick={()=>router.push(`../admin/drugs-details/${product["Medicine Name"].split(" ")[0]}`)}>
+                {product["Medicine Name"]}
+              </div>
               <div className="p-1 w-full bg-[#A4CBB4] text-center text-xs font-medium rounded-full">{product["Manufacturer"]}</div>
             </h2>
             {
@@ -82,7 +85,9 @@ const Page = () => {
           <figure className="max-h-[8em]"><img src={product["Image URL"]} alt={product["Medicine Name"]} /></figure>
           <div className="card-body max-h-72">
             <h2 className="card-title flex flex-col items-start">
-              <div>{product["Medicine Name"]}</div>
+              <div className="underline cursor-pointer text-blue-950" onClick={()=>router.push(`../admin/drugs-details/${product["Medicine Name"].split(" ")[0]}`)}>
+                {product["Medicine Name"]}
+              </div>
               <div className="p-1 w-full bg-[#A4CBB4] text-center text-xs font-medium rounded-full">{product["Manufacturer"]}</div>
             </h2>
             {
@@ -117,7 +122,9 @@ const Page = () => {
         <figure className="max-h-[8em]"><img src={product["Image URL"]} alt={product["Medicine Name"]} /></figure>
         <div className="card-body max-h-72">
           <h2 className="card-title flex flex-col items-start">
-            <div>{product["Medicine Name"]}</div>
+            <div className="underline cursor-pointer text-blue-950" onClick={()=>router.push(`../admin/drugs-details/${product["Medicine Name"].split(" ")[0]}`)}>
+              {product["Medicine Name"]}
+            </div>
             <div className="p-1 w-full bg-[#A4CBB4] text-center text-xs font-medium rounded-full">{product["Manufacturer"]}</div>
           </h2>
           {

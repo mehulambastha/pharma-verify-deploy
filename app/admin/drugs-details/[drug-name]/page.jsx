@@ -8,7 +8,6 @@ const Page = () => {
 
 
   const [currentDrug, setCurrentDrug] = useState({})
-  const [allProducts, setAllProducts] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(()=>{
