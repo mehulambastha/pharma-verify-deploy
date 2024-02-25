@@ -24,13 +24,13 @@ const Navbar = () => {
 
   if (typeof window !== 'undefined' && currentViewingMode) {
     return(
-      <div className="navbar bg-neutral">
+      <div className="navbar bg-neutral text-black">
         <div className="navbar-start">
 
           {/* //DROPDOWN FOR SMALL SCREENS */}
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
             <ul tabIndex={0} className="text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li onClick={()=>{
@@ -61,22 +61,15 @@ const Navbar = () => {
                       ><a>Pending</a></li>
                     </ul>
                   </li>
-                  <li>
-                    <a>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                      Updates
-                      <span className="badge badge-sm badge-warning">NEW</span>
-                    </a>
-                  </li>
                 </>
               }
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">GSC PROJECT</a>
+          <a className="btn btn-ghost text-white text-xl">GSC PROJECT</a>
         </div>
 
         {/* WIDE NAVBAR FOR LARGE SCREENS */}
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center text-white hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             { (pathName == "/" || pathName == "/welcome" || pathName.startsWith("/admin/drugs-details")) ?  <li>PHARMAVERIFY</li> : (
                         <>
